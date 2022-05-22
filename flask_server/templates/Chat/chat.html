@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Chat</title>
+
+		<!-- Style Sheets -->
+		<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery.mCustomScrollbar.min.css') }}">
+
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/chat/style.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/chat/bootstrap.min.css') }}">
+
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/emoji/emojionearea.min.css') }}">
+	</head>
+
+	<body ng-app="myChat" >
+		<div class="container-fluid h-100" ng-controller="chatController">
+			<div class="row justify-content-center h-100">
+				<div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
+					<div class="card-header">
+						<div class="input-group">
+							<input type="text" placeholder="Search..." name="" class="form-control search" ng-model="searchInputModel">
+							<div class="input-group-prepend">
+								<span class="input-group-text search_btn" ng-click="showContacts()"><i class="fas fa-search"></i></span>
+							</div>
+						</div>
+					</div>
+					<div class="card-body contacts_body">
+						<ui class="contacts" compile="chatList"></ui>
+					</div>
+					<div class="card-footer"></div>
+				</div>
+			</div>
+				<div class="col-md-8 col-xl-6 chat">
+					<div class="card">
+						<div class="card-header msg_head">
+							<div class="d-flex bd-highlight">
+								<div class="img_cont" ng-show="isProfilePictureNotHidden">
+									<img src="{{ url_for('static', filename='images/main_customer/profile.png') }}" class="rounded-circle user_img">
+								</div>
+								<div class="user_info">
+									<span id="chat_partner" ng-bind="chatPartnerTitle"></span>
+									<p ng-bind="messageCount"></p>
+								</div>
+							</div>
+						</div>
+
+						<div class="card-body msg_card_body" compile="chatHistory"></div>
+
+						<div class="d-flex justify-content-start mb-4" ng-show="isPartnerTyping">
+							<div class="msg_cotainer">
+								<div id="partner_typing_message" class="msg_cotainer"></div>
+							</div>
+						</div>
+
+						<div class="card-footer" ng-show="isFooterNotHidden">
+							<div class="input-group">
+								<div class="input-group-append">
+									<span id="emoji_btn" class="input-group-text attach_btn">&#128512;</span>
+								</div>
+								<textarea id="message_content" class="form-control type_msg" placeholder="Type your message..." ng-model="textModel" my-enter="sendMessage()" ng-change="trackChatUserActivity()"></textarea>
+								<div class="input-group-append">
+									<span class="input-group-text send_btn" ng-click="sendMessage()"><i class="fas fa-location-arrow"></i></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Script Files -->
+		<script type="text/javascript" src="{{ url_for('static', filename='jquery/jquery.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='jquery/jquery.mCustomScrollbar.min.js') }}"></script>
+
+		<script type="text/javascript" src="{{ url_for('static', filename='js/socket.io.js') }}"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emoji-button@latest/dist/index.min.js"></script>
+<!--		<script type="text/javascript" src="{{ url_for('static', filename='js/emoji/emoji.js') }}"></script>-->
+
+		<script type="text/javascript" src="{{ url_for('static', filename='angularjs/angular.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='angularjs/angular-sanitize.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='angularjs/chat/controller.js') }}"></script>
+	</body>
+</html>

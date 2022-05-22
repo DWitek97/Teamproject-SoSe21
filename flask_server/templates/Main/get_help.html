@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LLZG5YH7XJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LLZG5YH7XJ');
+</script>
+    <meta charset="UTF-8">
+    <title>Get Help</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+
+    <!-- Angular -->
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/main_customer/controller.js') }}"></script>
+
+    <!-- custom css files -->
+    <!-- <link href="get_help.css" rel="stylesheet">-->
+    <link href="{{ url_for('static', filename='css/help/get_help.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Main/style.css') }}">
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">-->
+    <link href="{{ url_for('static', filename='Bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" crossorigin="anonymous">
+
+    <meta name="theme-color" content="#7952b3">
+    <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        </style>
+  </head>
+
+  <!-- <body> -->
+  <body ng-app="main_customer">
+  <div id="main" ng-controller="main_customerController">
+  <!-- <div id="main"> -->
+    <!------------------------------------------------------ Header ------------------------------------------------------------->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample03">
+         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+
+            <!-- Home -->
+            <li class="nav-item">
+              <!-- <li><a href="#" class="nav-link active" aria-current="page" href="#"><img src="../images/home.png" alt="home_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+              <li ng-click="goBackToMainpage()"><a  class="nav-link active" aria-current="page" href="#"><img src="{{ url_for('static', filename='images/main_customer/home.png') }}" alt="home_icon" width="32" height="32" class="rounded-circle"></a></li>
+            </li>
+
+            <!-- Messages -->
+            <li class="nav-item">
+              <!--<li><a href="#" class="nav-link" href="#"> <img src="../images/messages.png" alt="message_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+              <li ng-click="getChatPage()"><a href="#" class="nav-link" href="#"> <img src="{{ url_for('static', filename='images/main_customer/messages.png') }}" alt="message_icon" width="32" height="32" class="rounded-circle"></a></li>
+            </li>
+
+
+          </ul>
+
+          <ul class="navbar-nav ms-auto">
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">
+                <!-- Profile Picture -->
+                <!-- <img src="../images/profile.png" alt="profile_image" width="32" height="32" class="rounded-circle">-->
+                <img src="{{ url_for('static', filename='images/main_customer/profile.png') }}" alt="profile_image" width="32" height="32" class="rounded-circle">
+              </a>
+              <ul class="dropdown-menu ms-auto" aria-labelledby="dropdown03">
+                <!-- Profile -->
+                <li><a class="dropdown-item" ng-click="getProfile()">My profile</a></li>
+                <!-- About Page -->
+                <li><a class="dropdown-item" ng-click="getMainAboutPage()">About</a></li>
+                <!-- Logout -->
+                <li><a class="dropdown-item" ng-click="getLogout()">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="content" class="row featurette">
+        <!------------------------------------------------------ Main content ------------------------------------------------------------->
+
+        <!-- Agents -->
+        <div class="container px-4 py-5" id="featured-3">
+            <h2 class="pb-2 border-bottom">Please contact one of our agents to help you find the perfect property</h2>
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+              <div class="feature col">
+                <div class="feature-icon bg-gradient">
+                  <!-- <img src="../images/profile.png" alt="profile_pic_a" width="100"> -->
+                  <img src="{{ url_for('static', filename='images/main_customer/profile.png') }}" alt="profile_image" width="32" height="32" class="rounded-circle">
+                </div>
+                <h2>Agent A</h2>
+                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                <button ng-click="getChatPage()" id="btn1" type="button" class="btn btn-info px-4 myButton"> Contact </button> <br>
+              </div>
+              <div class="feature col">
+                <div class="feature-icon bg-gradient">
+                    <!-- <img src="../images/profile.png" alt="profile_pic_a" width="100"> -->
+                    <img src="{{ url_for('static', filename='images/main_customer/profile.png') }}" alt="profile_image" width="32" height="32" class="rounded-circle">
+                </div>
+                <h2>Agent B</h2>
+                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                <button ng-click="getChatPage()" id="btn2" type="button" class="btn btn-info px-4 myButton"> Contact </button> <br>
+              </div>
+              <div class="feature col">
+                <div class="feature-icon bg-gradient">
+                  <!-- <img src="../images/profile.png" alt="profile_pic_a" width="100"> -->
+                  <img src="{{ url_for('static', filename='images/main_customer/profile.png') }}" alt="profile_image" width="32" height="32" class="rounded-circle">
+                </div>
+                <h2>Agent C</h2>
+                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                <button ng-click="getChatPage()" id="btn3" type="button" class="btn btn-info px-4 myButton"> Contact </button> <br>
+              </div>
+            </div>
+        </div>
+
+        <!-- Support -->
+        <div class="container px-4 py-5">
+            <h2 class="pb-2 border-bottom">If you need technical support, please contact our support team</h2>
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+              <div class="feature col">
+                <div class="feature-icon bg-gradient">
+                  <!-- <img src="../images/profile.png" alt="profile_pic_a" width="100"> -->
+                  <img src="{{ url_for('static', filename='images/main_customer/profile.png') }}" alt="profile_image" width="32" height="32" class="rounded-circle">
+                </div>
+                <h2>Support</h2>
+                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                <button ng-click="getChatPage()" id="btn4" type="button" class="btn btn-info px-4 myButton"> Contact </button> <br>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">Back to top</a>
+      </p>
+      <p class="mb-1">The information included at this website is for educational purposes only. No real estates to rent or buy!
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap javascript-->
+    <!-- <script src="../js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
+    <script src="{{ url_for('static', filename='Bootstrap/js/bootstrap.bundle.js') }}" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/socket.io.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NT93HNL');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.83.1">
+    <title>Fulda House Agency</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/main_customer/controller.js') }}"></script>
+
+    <!-- custom css files -->
+    <!--<link rel="stylesheet" href="sidebar.css">-->
+    <link href="{{ url_for('static', filename='css/main_customer/sidebar.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Main/style.css') }}">
+
+    <!-- Bootstrap core CSS -->
+    <!--<link href="../css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">-->
+
+    <link href="{{ url_for('static', filename='Bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"  crossorigin="anonymous">
+
+        <!-- Scripts for multiple dropdown -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+    <meta name="theme-color" content="#7952b3">
+        <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        </style>
+
+          <script>
+              $('select').selectpicker();
+          </script>
+  </head>
+  <body ng-app="main_customer">
+
+  <!------------------------------------------------ Sidebar for filter option ------------------------------------------------->
+  <div id="mySidebar" class="sidebar">
+     <div class="sidebar_content">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h5>Property Type</h5>
+        <form class="ml-md-2">
+            <div class="form-inline border rounded p-sm-2 my-2"> <input type="checkbox" name="type" id="villa"> <label for="villa" class="pl-1 pt-sm-0 pt-1">Villa</label> </div>
+            <div class="form-inline border rounded p-sm-2 my-2"> <input type="checkbox" name="type" id="flat"> <label for="flat" class="pl-1 pt-sm-0 pt-1">Flat</label> </div>
+            <div class="form-inline border rounded p-md-2 p-sm-1"> <input type="checkbox" name="type" id="dethosuse"> <label for="dethosuse" class="pl-1 pt-sm-0 pt-1">Detached house</label> </div>
+
+        </form>
+        <h5>Extras</h5>
+        <form class="ml-md-2">
+            <div class="form-inline border rounded p-sm-2 my-2"> <input type="checkbox" name="type" id="pool"> <label for="pool" class="pl-1 pt-sm-0 pt-1">Pool</label> </div>
+            <div class="form-inline border rounded p-sm-2 my-2"> <input type="checkbox" name="type" id="sauna"> <label for="sauna" class="pl-1 pt-sm-0 pt-1">Sauna</label> </div>
+            <div class="form-inline border rounded p-md-2 p-sm-1"> <input type="checkbox" name="type" id="bgarden"> <label for="bgarden" class="pl-1 pt-sm-0 pt-1">Big Garden</label> </div>
+        </form>
+        <h5>Costs</h5>
+        <form class="ml-md-2">
+            <div class="form-inline border rounded p-sm-2 my-2"> <input type="checkbox" name="type" id="price1"> <label for="price1" class="pl-1 pt-sm-0 pt-1"> < 200.000€ </label> </div>
+            <div class="form-inline border rounded p-sm-2 my-2"> <input type="checkbox" name="type" id="price2"> <label for="price2" class="pl-1 pt-sm-0 pt-1"> 200.000€ up to  450.000€</label> </div>
+            <div class="form-inline border rounded p-md-2 p-sm-1"> <input type="checkbox" name="type" id="price3"> <label for="price3" class="pl-1 pt-sm-0 pt-1"> > 450.000€</label> </div>
+        </form>
+     </div>
+</div>
+
+  <div id="main" ng-controller="main_customerController" data-ng-init="approveInit()">
+    <!------------------------------------------------------ Header ------------------------------------------------------------->
+     <header class="p-3 bg-dark text-white">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+          <!-- Home, Messages, Get Help -->
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav nav-pills">
+            <!--<li><a href="#" class="nav-link px-2 text-secondary"><img src="../images/home.png" alt="home_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+            <li ng-click="goBackToMainpage()"><a href="#" class="nav-link px-2 text-secondary"><img
+                            src="{{ url_for('static', filename='images/main_customer/home.png') }}" alt="home_icon"
+                            width="32" height="32" class="rounded-circle"></a></li>
+            <!--<li><a href="#" class="nav-link px-2 text-secondary"> <img src="../images/messages.png" alt="message_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+            <li id="notification_btn" ng-click="getChatPage()">
+                <a href="#" class="nav-link px-2 text-secondary">
+                    <img src="{{ url_for('static', filename='images/main_customer/messages.png') }}" alt="message_icon" width="32" height="32" class="rounded-circle">
+                </a>
+                <span class="badge" ng-show="isNotificationCountVisible">{{ '{{' }}notificationNumber{{ '}}' }}</span>
+            </li>
+            <li><a  class=" btn  nav-link px-2 text-secondary" ng-click="getSwitchView()">Switch View</a></li>
+          </ul>
+
+          <!-- Dropdown: Profile, About, Logout -->
+          <div class="dropdown text-end">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" role="button" data-toggle="dropdown" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+               <img src="{{ url_for('static', filename='images/main_customer/profile.png') }}" alt="profile_image" width="32" height="32" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+              <li><a class="dropdown-item" ng-click="getProfileAgent()">My profile</a></li>
+              <li><a class="dropdown-item" ng-click="getMainAboutPage()">About</a></li>
+              <li><a class="dropdown-item" ng-click="getLogout()">Logout</a></li>
+            </ul>
+          </div>
+
+          <!--
+          <div class="text-end">
+            <button type="button" class="btn btn-outline-light me-2">Login</button>
+            <button type="button" class="btn btn-warning">Sign-up</button>
+          </div> -->
+        </div>
+      </div>
+    </header>
+    <main data-ng-init="get_all_hashtags()">
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/main_customer/home.png') }}" alt="" width="72" height="57">
+      <h2>Change Listing</h2>
+      <p class="lead">Here you can change the selected listing.</p>
+    </div>
+    <div style='width:50%; margin: auto;'>
+<!--<form class="row g-3" action="/image-upload" method="POST" enctype="multipart/form-data">-->
+<form class="row g-3">
+  <div class="col-md-6">
+    <label for="inputName" class="form-label">Name</label>
+    <input type="text" oninput="getListingName(this);" ng-model="listingName" class="form-control" id="inputName" placeholder="{{ '{{' }}single_property[1]{{ '}}' }}">
+  </div>
+  <div class="col-md-6">
+    <label for="inputPrice" class="form-label">Price</label>
+    <input type="text" ng-model="listingPrice" class="form-control" id="inputPrice" placeholder="{{ '{{' }}single_property[2]{{ '}}' }}">
+  </div>
+  <div class="col-md-6">
+    <label for="inputsqm" class="form-label">Square metres</label>
+    <input type="text" ng-model="listingSqm" class="form-control" id="inputsqm" placeholder="{{ '{{' }}single_property[3]{{ '}}' }}">
+  </div>
+  <div class="col-md-6">
+    <label for="inputrooms" class="form-label">Rooms</label>
+    <input type="text" ng-model="listingRooms" class="form-control" id="inputrooms" placeholder="{{ '{{' }}single_property[4]{{ '}}' }}">
+  </div>
+    <div class="col-md-6">
+    <label for="inputZip" class="form-label">Zip</label>
+    <input type="text" ng-model="listingZip" class="form-control" id="inputZip" placeholder="{{ '{{' }}single_property[6]{{ '}}' }}">
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">City</label>
+    <input type="text" ng-model="listingCity" class="form-control" id="inputCity" placeholder="{{ '{{' }}single_property[5]{{ '}}' }}">
+  </div>
+ <div class="col-md-6">
+    <label for="inputStreet" class="form-label">Street</label>
+    <input type="text" ng-model="listingStreet" class="form-control" id="inputStreet" placeholder="{{ '{{' }}single_property[7]{{ '}}' }}">
+  </div>
+  <div class="col-md-6">
+    <label for="inputStreetNo" class="form-label">Street No</label>
+    <input type="text" ng-model="listingStreetNo" class="form-control" id="inputStreetNo" placeholder="{{ '{{' }}single_property[8]{{ '}}' }}">
+  </div>
+    <div class="col-md-6">
+        <div data-ng-init="getPropHashtags(propertyID)">
+            <h5>Hashtags</h5>
+            <p>Currently linked:</p>
+            <div ng-repeat="linkedHT in linkedHTs">
+                <p style="color:red; margin-left:20px">{{ '{{' }} linkedHT {{ '}}' }}</p>
+            </div>
+        </div>
+        <label for="inputHashtag" class="form-label">Re-select Hashtags: </label>
+                  <select class="selectpicker" multiple data-live-search="true" ng-model="htSelected" ng-change="changedValue(htSelected)">
+                <!-- ng-model="newHT{{ '{{' }}hashtag[0]{{ '}}' }}" ng-click="getSelectedHTs()"-->
+                    <!-- <option ng-repeat="hashtag in hashtags" id="newHT{{ '{{' }}hashtag[1]{{ '}}' }}" {{ '{{' }}hashtag[0]{{ '}}' }}: {{ '{{' }}hashtag[1]{{ '}}' }}</option>-->
+                <option value="1" id="Close to a Park">Close to a Park</option>
+                <option value="2" id="Big Garden">Big Garden</option>
+               <option value="3" id="City center">City center</option>
+               <option value="4" id="Close to a Subway Station">Close to a Subway Station</option>
+               <option value="5" id="Pet friendly">Pet friendly</option>
+               <option value="6" id="Pool">Pool</option>
+               <option value="7" id="Quiet Location"> Quiet Location</option>
+               <option value="8" id="Sauna">Sauna</option>
+               <option value="9" id="Steam bath">Steam bath</option>
+            </select>
+    </div>
+    <label for="formFileLg" class="form-label"> <h5>Select Photo of the Listing</h5></label>
+    <input class="form-control form-control-lg" id="formFileLg" name="image" oninput="getFileSize(this);" type="file" file-model="listingImage" accept="image/*" />
+  <div class="col-12">
+    <label> <h5>Mark Listing as sold?</h5></label>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="inputMaSold" ng-model="listingApproved">
+      <label class="form-check-label" for="inputMaSold">
+        Sold
+      </label>
+    </div>
+  </div>
+
+      <div class="col-md-6">
+          <!-- updateListing(); goBackToMainpage()-->
+    <button type="submit" class="btn btn-primary btn-lg" ng-click="updateListing(); goBackToMainpage()">Save and Finish</button>
+  </div>
+</form>
+    </div>
+  </main>
+  </footer>
+
+
+  <!--<script src="../js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>-->
+  <script src="{{ url_for('static', filename='Bootstrap/js/bootstrap.bundle.js') }}" crossorigin="anonymous"></script>
+
+  <!-- custom javascript -->
+  <!--<script src="sidebar.js"></script>-->
+  <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+
+  <script src="{{ url_for('static', filename='js/file_upload/file_upload.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/socket.io.js') }}"></script>
+  </div>
+  </body>
+</html>

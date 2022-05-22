@@ -1,0 +1,14 @@
+.disclaimer {color: red;}
+
+footer {
+    clear: both;
+    position: relative;
+    height: 50px;
+    /*margin-top: -200px;*/
+    text-align: center;
+}
+
+.buttons {
+    width: 100%;
+    clear: both;
+}

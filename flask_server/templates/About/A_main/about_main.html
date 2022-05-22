@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/About/controller.js') }}"></script>    
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/About/A_main/style.css') }}">
+
+    <title>About</title>
+  </head>
+  
+  <body ng-app="about">  
+    <h1 class="disclaimer"> Fulda University Software Engineering Summer 2021. For Demonstration Only</h1>
+    <div id="Teammates" ng-controller="aboutController">
+        <h1>This is the website for Teamprojekt SS21 HS Fulda</h1>
+        <h3>Teammates from Team B are:</h3>
+        <button ng-click="getAboutPage(memberName1)">Joshua Rahimi</button> <br><br>
+        <button ng-click="getAboutPage(memberName2)">Darya Traxel</button> <br><br>
+        <button ng-click="getAboutPage(memberName3)">David Witek</button> <br><br>
+        <button ng-click="getAboutPage(memberName4)">Oliver Kovarna</button> <br><br>
+        <button ng-click="getAboutPage(memberName5)">Elisabeth Milde</button> <br><br>
+        <button ng-click="goBackToMainpage()">Back</button> <br><br>
+    </div>
+
+  </body>
+    <footer>
+    <strong class="disclaimer"> The information included at this website is for educational purposes only. No real estates to rent or buy.</strong>
+  </footer>
+</html>

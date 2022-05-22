@@ -1,0 +1,191 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+<!-- Google Tag Manager -->
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NT93HNL');
+    </script>
+<!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.83.1">
+    <title>Fulda House Agency</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+
+    <!-- Scripts for multiple dropdown -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/main_customer/controller.js') }}"></script>
+
+    <!-- custom css files -->
+
+    <link href="{{ url_for('static', filename='css/main_customer/sidebar.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Main/style.css') }}">
+
+
+    <link href="{{ url_for('static', filename='Bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"  crossorigin="anonymous">
+
+
+    <meta name="theme-color" content="#7952b3">
+        <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        </style>
+      <script>
+          $('select').selectpicker();
+      </script>
+  </head>
+  <body ng-app="main_customer">
+
+
+  <div id="main" ng-controller="main_customerController" data-ng-init="get_all_hashtags()">
+    <!------------------------------------------------------ Header ------------------------------------------------------------->
+     <header class="p-3 bg-dark text-white">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+          <!-- Home, Messages, Get Help -->
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav nav-pills">
+            <!--<li><a href="#" class="nav-link px-2 text-secondary"><img src="../images/home.png" alt="home_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+            <li ng-click="goBackToMainpage()"><a href="#" class="nav-link px-2 text-secondary"><img
+                            src="{{ url_for('static', filename='images/main_customer/home.png') }}" alt="home_icon"
+                            width="32" height="32" class="rounded-circle"></a></li>
+            <!--<li><a href="#" class="nav-link px-2 text-secondary"> <img src="../images/messages.png" alt="message_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+            <li id="notification_btn" ng-click="getChatPage()">
+                <a href="#" class="nav-link px-2 text-secondary">
+                    <img src="{{ url_for('static', filename='images/main_customer/messages.png') }}" alt="message_icon" width="32" height="32" class="rounded-circle">
+                </a>
+                <span class="badge" ng-show="isNotificationCountVisible">{{ '{{' }}notificationNumber{{ '}}' }}</span>
+            </li>
+            <li><a  class=" btn  nav-link px-2 text-secondary" ng-click="getSwitchView()">Switch View</a></li>
+          </ul>
+
+          <!-- Dropdown: Profile, About, Logout -->
+          <div class="dropdown text-end">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" role="button" data-toggle="dropdown" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+               <img src="{{ url_for('static', filename='images/main_customer/profile.png') }}" alt="profile_image" width="32" height="32" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+              <li><a class="dropdown-item" ng-click="getProfileAgent()">My profile</a></li>
+              <li><a class="dropdown-item" ng-click="getMainAboutPage()">About</a></li>
+              <li><a class="dropdown-item" ng-click="getLogout()">Logout</a></li>
+            </ul>
+          </div>
+
+          <!--
+          <div class="text-end">
+            <button type="button" class="btn btn-outline-light me-2">Login</button>
+            <button type="button" class="btn btn-warning">Sign-up</button>
+          </div> -->
+        </div>
+      </div>
+    </header>
+    <main >
+
+
+       <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/main_customer/home.png') }}" alt="" width="72" height="57">
+      <h2>Create a new Listing</h2>
+      <p class="lead">Here you can create a new listing.</p>
+    </div>
+    <div style='width:50%; margin: auto;'>
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label for="inputName" class="form-label">Name</label>
+        <input type="text" class="form-control" oninput="getListingName(this);"  id="inputName" placeholder="Name of the Listing" ng-model="listingName">
+      </div>
+      <div class="col-md-6">
+        <label for="inputPrice" class="form-label">Price</label>
+        <input type="text" class="form-control" id="inputPrice" placeholder="Price of the Listing" ng-model="listingPrice">
+      </div>
+      <div class="col-md-6">
+        <label for="inputsqm" class="form-label">Square metres</label>
+        <input type="text" class="form-control" id="inputsqm" placeholder="" ng-model="listingSqm">
+      </div>
+      <div class="col-md-6">
+        <label for="inputrooms" class="form-label">Rooms</label>
+        <input type="text" class="form-control" id="inputrooms" placeholder="" ng-model="listingRooms">
+      </div>
+        <div class="col-md-6">
+        <label for="inputZip" class="form-label">Zip</label>
+        <input type="text" class="form-control" id="inputZip" ng-model="listingZip">
+      </div>
+      <div class="col-md-6">
+        <label for="inputCity" class="form-label">City</label>
+        <input type="text" class="form-control" id="inputCity" ng-model="listingCity">
+      </div>
+     <div class="col-md-6">
+        <label for="inputStreet" class="form-label">Street</label>
+        <input type="text" class="form-control" id="inputStreet" ng-model="listingStreet">
+      </div>
+      <div class="col-md-6">
+        <label for="inputStreetNo" class="form-label">Street No</label>
+        <input type="text" class="form-control" id="inputStreetNo" ng-model="listingStreetNo">
+      </div>
+        <div class="col-md-6">
+            <label for="inputHashtag" class="form-label">Hashtags</label>
+           <select class="selectpicker" multiple data-live-search="true" ng-model="htSelected" ng-change="changedValue(htSelected)">
+                <!-- ng-model="newHT{{ '{{' }}hashtag[0]{{ '}}' }}" ng-click="getSelectedHTs()"-->
+                    <!-- <option ng-repeat="hashtag in hashtags" id="newHT{{ '{{' }}hashtag[1]{{ '}}' }}" {{ '{{' }}hashtag[0]{{ '}}' }}: {{ '{{' }}hashtag[1]{{ '}}' }}</option>-->
+                <option value="1" id="Close to a Park">Close to a Park</option>
+                <option value="2" id="Big Garden">Big Garden</option>
+               <option value="3" id="City center">City center</option>
+               <option value="4" id="Close to a Subway Station">Close to a Subway Station</option>
+               <option value="5" id="Pet friendly">Pet friendly</option>
+               <option value="6" id="Pool">Pool</option>
+               <option value="7" id="Quiet Location"> Quiet Location</option>
+               <option value="8" id="Sauna">Sauna</option>
+               <option value="9" id="Steam bath">Steam bath</option>
+
+            </select>
+        </div>
+        <label for="formFileLg" class="form-label"> <h5>Select Photo of the Listing</h5></label>
+     <input class="form-control form-control-lg" id="formFileLg" name="image" oninput="getFileSize(this);" type="file" file-model="listingImage" />
+
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="createListing(); goBackToMainpage()">Upload</button>
+      </div>
+    </form>
+            <p id="listing_name">
+            </p>
+             </div>
+  </main>
+  </footer>
+  </div>
+
+
+  <!--<script src="../js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>-->
+  <script src="{{ url_for('static', filename='Bootstrap/js/bootstrap.bundle.js') }}" crossorigin="anonymous"></script>
+
+  <!-- custom javascript -->
+  <!--<script src="sidebar.js"></script>-->
+  <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/file_upload/file_upload.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/socket.io.js') }}"></script>
+  </body>
+</html>

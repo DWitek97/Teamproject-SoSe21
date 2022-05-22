@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/main_customer/controller.js') }}"></script>
+    <script src="{{ url_for('static', filename='Bootstrap/js/bootstrap.bundle.js') }}" crossorigin="anonymous"></script>
+    <!-- custom css files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Main/style.css') }}">
+    <!-- Bootstrap core CSS -->
+    <!--<link href="../css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">-->
+    <link href="{{ url_for('static', filename='Bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"
+          crossorigin="anonymous">
+    <title>About</title>
+  </head>
+  <body ng-app="main_customer" ng-controller="main_customerController">
+       <header class="p-3 bg-dark text-white">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <!-- Home, Messages, Get Help -->
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav nav-pills">
+            <!--<li><a href="#" class="nav-link px-2 text-secondary"><img src="../images/home.png" alt="home_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+            <li ng-click="goBackToMainpage()"><a href="#" class="nav-link px-2 text-secondary"><img src="{{ url_for('static', filename='images/main_customer/home.png') }}" alt="home_icon" width="32" height="32" class="rounded-circle"></a></li>
+            <!--<li><a href="#" class="nav-link px-2 text-secondary"> <img src="../images/messages.png" alt="message_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+            <li id="notification_btn" ng-click="getChatPage()">
+                <a href="#" class="nav-link px-2 text-secondary">
+                    <img src="{{ url_for('static', filename='images/main_customer/messages.png') }}" alt="message_icon" width="32" height="32" class="rounded-circle">
+                </a>
+                <span class="badge" ng-show="isNotificationCountVisible">{{ '{{' }}notificationNumber{{ '}}' }}</span>
+            </li>
+          </ul>
+    <!-- Dropdown: Profile, About, Logout -->
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" role="button"
+                       data-toggle="dropdown" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ url_for('static', filename='images/main_customer/profile.png') }}"
+                             alt="profile_image" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" ng-click="getProfileAgentBM()">My profile</a></li>
+                        <li><a class="dropdown-item" ng-click="getMainAboutPage()">About</a></li>
+                        <li><a class="dropdown-item" ng-click="getLogout()">Logout</a></li>
+                    </ul>
+                </div>
+    </header>
+       <main>
+         <section class="py-3 text-center container">
+           <div class="row py-lg-3">
+             <div class="col-lg-6 col-md-4 mx-auto">
+               <h1 class="fw-light">Team B consists of the members: </h1>
+             </div>
+           </div>
+         </section>
+         <div class="row py-lg-5">
+           <div class="col-lg-3 col-md-8 mx-auto">
+
+             <table class="table" >
+               <thead>
+               <tr>
+                 <th scope="col">Username</th>
+                 <th scope="col">Check Profile</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+                 <td> Joshua Rahimi</td>
+                 <td> <button  ng-click="getAboutPage(memberName1)">Click here</button> <br><br></td>
+               </tr>
+               <tr>
+                 <td> Darya Traxel</td>
+                 <td> <button  ng-click="getAboutPage(memberName2)">Click here</button> <br><br></td>
+               </tr>
+               <tr>
+                 <td> David Witek</td>
+                 <td> <button  ng-click="getAboutPage(memberName3)">Click here</button> <br><br></td>
+               </tr>
+               <tr>
+                 <td> Oliver Kovarna</td>
+                 <td> <button  ng-click="getAboutPage(memberName4)">Click here</button> <br><br></td>
+               </tr>
+               <tr>
+                 <td> Elisabeth Milde</td>
+                 <td> <button  ng-click="getAboutPage(memberName5)">Click here</button> <br><br></td>
+               </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+         </div>
+       </main>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/socket.io.js') }}"></script>
+  </body>
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">Back to top</a>
+      </p>
+      <p class="mb-1">The information included at this website is for educational purposes only. No real estates to rent or buy!
+    </div>
+  </footer>
+</html>

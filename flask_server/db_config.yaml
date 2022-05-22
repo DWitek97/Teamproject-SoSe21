@@ -1,0 +1,5 @@
+mysql_host: 'localhost'
+mysql_user: 'admin'
+mysql_password: '#server12345!'
+mysql_db: 'test_db'
+db_instance_identifier: ''

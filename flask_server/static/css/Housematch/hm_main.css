@@ -1,0 +1,50 @@
+.notification {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  border-radius: 2px;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+
+.all {
+	/*background-color: #FFBCBC;*/
+}
+
+html {
+	/*background-color: #FFBCBC;*/
+}
+
+header {
+	background-color: #FF8A8A;
+	/*background-color: white;*/
+}
+
+#hm_btn {
+	border: solid red 0.5px;
+	background-color: #FFBCBC;
+	color: white;
+}
+
+.themed-grid-col {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  background-color: #FFBCBC;
+  border: 1px solid rgba(86, 61, 124, .2);
+  margin-bottom: .75rem;
+}
+
+.themed-container {
+  padding: .75rem;
+  margin-bottom: 1.5rem;
+  background-color: rgba(0, 123, 255, .15);
+  border: 1px solid rgba(0, 123, 255, .2);
+}

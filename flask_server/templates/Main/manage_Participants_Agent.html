@@ -1,0 +1,147 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LLZG5YH7XJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LLZG5YH7XJ');
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.83.1">
+    <title>Fulda House Agency</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+
+     <link href="{{ url_for('static', filename='Bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"  crossorigin="anonymous">
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/main_customer/controller.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/main_customer/searchController.js') }}"></script>
+
+    <!-- custom css files -->
+    <!--<link rel="stylesheet" href="sidebar.css">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Main/style.css') }}">
+    <!-- Bootstrap core CSS -->
+    <!--<link href="../css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">-->
+
+
+
+    <meta name="theme-color" content="#7952b3">
+        <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        </style>
+  </head>
+  <body ng-app="main_customer">
+
+  <div>
+    <div id="main" ng-controller="main_customerController" data-ng-init="get_all_customers()">
+    <!------------------------------------------------------ Header ------------------------------------------------------------->
+     <header class="p-3 bg-dark text-white">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <!-- Home, Messages, Get Help -->
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav nav-pills">
+            <!--<li><a href="#" class="nav-link px-2 text-secondary"><img src="../images/home.png" alt="home_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+            <li ng-click="goBackToMainpage()"><a href="#" class="nav-link px-2 text-secondary"><img src="{{ url_for('static', filename='images/main_customer/home.png') }}" alt="home_icon" width="32" height="32" class="rounded-circle"></a></li>
+            <!--<li><a href="#" class="nav-link px-2 text-secondary"> <img src="../images/messages.png" alt="message_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+            <li id="notification_btn" ng-click="getChatPage()">
+                <a href="#" class="nav-link px-2 text-secondary">
+                    <img src="{{ url_for('static', filename='images/main_customer/messages.png') }}" alt="message_icon" width="32" height="32" class="rounded-circle">
+                </a>
+                <span class="badge" ng-show="isNotificationCountVisible">{{ '{{' }}notificationNumber{{ '}}' }}</span>
+            </li>          </ul>
+
+          <!-- Dropdown: Profile, About, Logout -->
+          <div class="dropdown text-end">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" role="button" data-toggle="dropdown" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+               <img src="{{ url_for('static', filename='images/main_customer/profile.png') }}" alt="profile_image" width="32" height="32" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" ng-click="getProfileAgentBM()">My profile</a></li>
+            <li><a class="dropdown-item" ng-click="getMainAboutPage()">About</a></li>
+            <li><a class="dropdown-item" ng-click="getLogout()">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">View all existing Customers</h1>
+          </div>
+          <!-- Error messages for user to adapt search term -->
+          <div id="search" style="..."></div>
+        </div>
+      </section>
+
+
+ <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Password</th>
+      <th scope="col">Email</th>
+      <th scope="col">Is legitimate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="customer in customers">
+      <td>{{ '{{' }}customer[1]{{ '}}' }}</td>
+      <td>{{ '{{' }}customer[2]{{ '}}' }}<p><button type="" class="btn btn-sm btn-outline-secondary" ng-click ="changePassword(customer[0])">Change Password</button></td></p>
+      <td>{{ '{{' }}customer[3]{{ '}}' }}</td>
+      <td>{{ '{{' }}customer[10]{{ '}}' }} <p><button type="" class="btn btn-sm btn-outline-secondary" ng-click ="changeStatus(customer[0])">Change Status</button></td></p>
+    </tr>
+  </tbody>
+</table>
+
+              </div>
+            </div>
+</main>
+
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">Back to top</a>
+      </p>
+      <p class="mb-1">The information included at this website is for educational purposes only. No real estates to rent or buy!
+    </div>
+  </footer>
+
+
+
+      <!--<script src="../js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>-->
+  <script src="{{ url_for('static', filename='Bootstrap/js/bootstrap.bundle.js') }}" crossorigin="anonymous"></script>
+
+  <!-- custom javascript -->
+  <!--<script src="sidebar.js"></script>-->
+  <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/socket.io.js') }}"></script>
+       </div>
+ </div>
+  </body>
+  </div>
+</html>

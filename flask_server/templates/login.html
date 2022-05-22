@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LLZG5YH7XJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LLZG5YH7XJ');
+</script>
+		<title>Login Page</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/index/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/index/style.css') }}">
+		<link href="{{ url_for('static', filename='css/index/fonts.css') }}" rel="stylesheet">
+
+		<script type="text/javascript" src="{{ url_for('static', filename='jquery/jquery.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/index/bootstrap.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='angularjs/angular.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='angularjs/index/controller.js') }}"></script>
+	</head>
+
+	<body ng-app="myLogin">
+		<div class="container-fluid">
+			<div class="container">
+				<h2 class="text-center" id="title">Fulda House Agency</h2>
+				<hr>
+				<div class="row">
+					<div class="col-md-5" ng-controller="registerController">
+						<form role="form">
+							<fieldset>
+								<p class="text-uppercase pull-center"> SIGN UP:</p>
+								<div class="form-group">
+									<input type="text" ng-model="usernameModel" name="username" id="username" class="form-control input-lg" placeholder="username">
+								</div>
+								<div class="form-group">
+									<input type="email" ng-model="emailModel" name="email" id="email" class="form-control input-lg" placeholder="Email Address">
+								</div>
+								<div class="form-group">
+									<input type="password" ng-model="passwordModel1" name="password" id="password" class="form-control input-lg" placeholder="Password">
+								</div>
+									<div class="form-group">
+									<input type="password" ng-model="passwordModel2" name="password2" id="password2" class="form-control input-lg" placeholder="Password2">
+								</div>
+								<div class="form-check">
+									<label class="form-check-label">
+									  <input type="checkbox" id="register_as_agent">
+									  Register as an agent
+									</label>
+								  </div>
+								<div>
+									<br>
+									<input type="button" class="btn btn-md btn-primary" value="Register" ng-click="sendRegisterData()">
+								</div>
+							</fieldset>
+						</form>
+					</div>
+
+					<div class="col-md-2"></div>
+
+					<div class="col-md-5" ng-controller="loginController">
+						<form role="form">
+							<fieldset>
+								<p class="text-uppercase"> Login using your account: </p>
+
+								<div class="form-group">
+									<input type="text" ng-model="usernameModel" name="username" id="username" class="form-control input-lg" placeholder="username or email">
+								</div>
+								<div class="form-group">
+									<input type="password" ng-model="passwordModel" name="password" id="password" class="form-control input-lg" placeholder="Password">
+								</div>
+								<div>
+									<input type="button" class="btn btn-md" value="Sign In" ng-click="sendLoginData()">
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,91 @@
+body {
+  font-family: sans-serif;
+}
+
+.favorites-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.favorites-list li {
+  position: relative;
+  padding-left: 24px;
+  margin-top: 10px;
+}
+
+.favorites-list li:first-child {
+  margin: 0;
+}
+
+.favorites-list li:before {
+  content: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/20807/star.png");
+  position: absolute;
+  left: 0;
+  top: -3px;
+}
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s; /* If you want a transition effect */
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+.sidebar_content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.sidebar_content h5 {
+    margin-top: 30px;
+}
+
+/*Favorite Button*/
+label {
+  /* Presentation */
+  font-size: 18px
+}
+
+/* Required Styling */
+
+label input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox {
+  margin-left: 2em;
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-checkbox .glyphicon {
+  color: gold;
+  position: absolute;
+  top: 0.4em;
+  left: -1.25em;
+  font-size: 0.75em;
+}
+
+.custom-checkbox .glyphicon-star-empty {
+  color: gray;
+}
+
+.custom-checkbox .glyphicon-star {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.custom-checkbox:hover .glyphicon-star{
+  opacity: 0.5;
+}
+
+.custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
+  opacity: 1;
+}

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LLZG5YH7XJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LLZG5YH7XJ');
+</script>
+    <meta charset="utf-8">
+    <title>Profile</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+
+    <!-- Angular -->
+
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='angularjs/main_customer/controller.js') }}"></script>
+
+
+    <!-- custom css files -->
+    <!-- <link href="bs.css" rel="stylesheet">-->
+    <link href="{{ url_for('static', filename='css/profile/bs.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Main/style.css') }}">
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">-->
+    <link href="{{ url_for('static', filename='Bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" crossorigin="anonymous">
+
+    <!-- own css -->
+    <!-- <link href="profile.css" rel="stylesheet">-->
+    <link href="{{ url_for('static', filename='css/profile/profile.css') }}" rel="stylesheet">
+
+    <meta name="theme-color" content="#7952b3">
+        <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        </style>
+  </head>
+
+  <!-- <body>-->
+  <body ng-app="main_customer">
+  <div id="main" ng-controller="main_customerController" >
+  <!--<div id="main">-->
+    <!------------------------------------------------------ Header ------------------------------------------------------------->
+    <header class="p-3 bg-dark text-white">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+          <!-- Home, Messages, Get Help -->
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav nav-pills">
+            <!--<li><a href="#" class="nav-link px-2 text-secondary"><img src="../images/home.png" alt="home_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+            <li ng-click="goBackToMainpage()"><a href="#" class="nav-link px-2 text-secondary"><img src="{{ url_for('static', filename='images/main_customer/home.png') }}" alt="home_icon" width="32" height="32" class="rounded-circle"></a></li>
+            <!--<li><a href="#" class="nav-link px-2 text-secondary"> <img src="../images/messages.png" alt="message_icon" width="32" height="32" class="rounded-circle"></a></li>-->
+            <li id="notification_btn" ng-click="getChatPage()">
+                <a href="#" class="nav-link px-2 text-secondary">
+                    <img src="{{ url_for('static', filename='images/main_customer/messages.png') }}" alt="message_icon" width="32" height="32" class="rounded-circle">
+                </a>
+                <span class="badge" ng-show="isNotificationCountVisible">{{ '{{' }}notificationNumber{{ '}}' }}</span>
+            </li>
+            <li ng-click="getHelp()"><a href="#" class="nav-link px-2 text-secondary">Get Help</a></li>
+          </ul>
+
+          <!-- Dropdown: Profile, About, Logout -->
+          <div class="dropdown text-end">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" role="button" data-toggle="dropdown" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+               <img src="{{ url_for('static', filename='images/main_customer/profile.png') }}" alt="profile_image" width="32" height="32" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" ng-click="getProfile()">My profile</a></li>
+            <li><a class="dropdown-item" ng-click="getMainAboutPage()">About</a></li>
+            <li><a class="dropdown-item" ng-click="getLogout()">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main data-ng-init="initProfile()">
+
+      <!-- Main content of the page -->
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+          <h2 class="featurette-heading">Welcome {{ '{{' }}profiles[0][8]{{ '}}' }} {{ '{{' }}profiles[0][9]{{ '}}' }}  <span class="text-muted"></span></h2>
+          <p class="lead">First Name: </p> <p name="firstname"> {{ '{{' }}profiles[0][8]{{ '}}' }}  </p> <br>
+          <p class="lead">Last Name: </p> <p name="lastname"> {{ '{{' }}profiles[0][9]{{ '}}' }}  </p> <br>
+          <button id="btn1" type="button" class="btn btn-default px-4 my_button" ng-click="editProfile()"> Edit </button> <br>
+          <button id="btn2" type="button" class="btn btn-info px-4 my_button" ng-click="getInterestPage()"> Marked as interesting </button>
+        </div>
+        <div class="col-md-5 order-md-1">
+          <img id="profile_pic" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{{ url_for('static', filename='images/main_customer/profile.png') }}" alt="profile_icon" width="500" height="500" preserveAspectRatio="xMidYMid slice">
+          <!-- <img id="profile_pic" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="../images/profile.png" alt="profile_icon" width="500" height="500" preserveAspectRatio="xMidYMid slice">-->
+        </div>
+    </div>
+
+    </main>
+
+    </div>
+
+
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">Back to top</a>
+      </p>
+      <p class="mb-1">The information included at this website is for educational purposes only. No real estates to rent or buy!
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap javascript-->
+  <!-- <script src="../js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
+  <script src="{{ url_for('static', filename='Bootstrap/js/bootstrap.bundle.js') }}" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/socket.io.js') }}"></script>
+  <!-- custom javascript -->
+
+  </body>
+</html>

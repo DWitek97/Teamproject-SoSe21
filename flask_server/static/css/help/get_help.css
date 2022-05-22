@@ -1,0 +1,9 @@
+#content{
+    margin-left: 30px;
+}
+
+.myButton {
+    border: solid !important;
+    border-width: 0.5px !important;
+    margin-bottom: 20px;
+}
