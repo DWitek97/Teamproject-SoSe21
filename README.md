@@ -4,7 +4,9 @@ During the "Teamprojekt" course at Hochschule Fulda a Team of 5 Students includi
 ## Techstack
 
 Frontend: Angular.js
+
 Backend: Python (Flask)
+
 Visuals: Bootstrap
 
 ## Documentation for setup
