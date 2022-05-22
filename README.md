@@ -1,3 +1,6 @@
+## SoSe21 Teamproject @Hochschule Fulda
+During the "Teamprojekt" course at Hochschule Fulda a Team of 5 Students including me have built a real estate website. The website supports basic search and filter functionalities, aswell als uploading and managing properties. Users can register to use the chat function to chat with each other or a chatbot that helps them finding the perfect property that fits their needs.
+
 ## Documentation for setup
 
 ### Create database user with password
